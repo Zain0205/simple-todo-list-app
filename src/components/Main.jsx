@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ListCard from "./ListCard";
 import AddTodo from "./AddTodo";
+import NotFound from "./NotFound";
 
 function Main() {
   const [todoList, setTodoList] = useState([]);
@@ -33,11 +34,17 @@ function Main() {
     setTodoList(checkedTodo);
   };
 
+  const editTask = (id) => {
+    const editedTask = todoList.map((todo) => (todo.id === id ? { ...todo, editAble: !todo.editAble } : todo));
+
+    setTodoList(editedTask);
+  };
+
   return (
     <main>
       <div>
         <AddTodo addTodoButton={addNewTodo} addTodoInput={handleChange} />
-        {todoList.map((todo) => (
+        {todoList.length ? todoList.map((todo) => 
           <ListCard 
             key={todo.id} 
             id={todo.id} 
@@ -46,11 +53,31 @@ function Main() {
             edit={todo.editAble} 
             dellete={delleteTodo} 
             handleCheckBox={handleChecked} 
-          />
-        ))}
+            handleEdit={editTask}  
+          />) : (<NotFound />)}
       </div>
     </main>
   );
 }
 
 export default Main;
+
+
+
+
+
+
+
+
+
+
+// <ListCard 
+  // key={todo.id} 
+  // id={todo.id} 
+  // task={todo.task} 
+  // checked={todo.checked} 
+  // edit={todo.editAble} 
+  // dellete={delleteTodo} 
+  // handleCheckBox={handleChecked} 
+  // handleEdit={editTask} 
+// />

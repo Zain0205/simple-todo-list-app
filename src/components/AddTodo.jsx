@@ -1,10 +1,15 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 
-function AddTodo({ addTodoInput, addTodoButton, newTask }) {
+function AddTodo({ addTodoInput, addTodoButton }) {
   return (
     <div className="addForm">
-      <input id="add" onChange={addTodoInput} placeholder="Add Todo" type="text" />
+      <input 
+        id="add" 
+        onChange={addTodoInput} 
+        placeholder="Add Task" 
+        type="text" 
+      />
       <button onClick={addTodoButton}>
         <FaPlus />
       </button>
